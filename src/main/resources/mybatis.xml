@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 配置环境 -->
+    <environments default="oracle">
+        <environment id="oracle">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+                <property name="url" value="jdbc:oracle:thin:@oracle.cise.ufl.edu:1521:ORCL"/>
+                <property name="username" value="keyuan"/>
+                <property name="password" value="LMkyo1354"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- 引入映射配置文件 -->
+    <mappers>
+        <package name="DBMS.Group03.dao"/>
+    </mappers>
+
+</configuration>
