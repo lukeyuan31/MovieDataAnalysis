@@ -12,7 +12,7 @@
 </head>
 <body>
 <h3>
-    查询所有用户
+    Result
 </h3>
 <%=request.getAttribute("Continent")%>
 </body>
