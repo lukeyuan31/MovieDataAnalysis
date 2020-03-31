@@ -1,6 +1,7 @@
 package DBMS.Group03.service.impl;
 import DBMS.Group03.dao.UsersDao;
 import DBMS.Group03.domain.Movies;
+import DBMS.Group03.domain.Ratings;
 import DBMS.Group03.service.MoviesService;
 import DBMS.Group03.dao.MovieDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,11 @@ public class MoviesServiceImpl implements MoviesService{
     public List<String> findMovies(Movies movies){
         System.out.println("查找电影");
         return movieDao.findMovie(movies);
+    }
+
+    @Override
+    public List<Ratings> findRatings(Movies movies){
+        System.out.println("查找评分");
+        return movieDao.findRating(movies);
     }
 }

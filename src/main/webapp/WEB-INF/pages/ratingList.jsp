@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: lukeyuan
-  Date: 2020/3/22
-  Time: 10:50 上午
+  Date: 2020/3/30
+  Time: 10:45 下午
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,10 +14,6 @@
 <h3>
     Result
 </h3>
-<%=request.getAttribute("Continent")%>
-
-<a href="/movies/findMovies">
-    <button>Back</button>
-</a>
+<%=request.getAttribute("MovieRating").toString()%> <br>
 </body>
 </html>
