@@ -2,9 +2,20 @@
 <html>
 <head>
     <title>Home page</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
+<style>
+    div.text{
+        width: 80%;
+        margin:30px;
+        position: center;
+    }
+
+
+</style>
 <body>
-<h2>Hello World!</h2>
+<div class="input_box1">
+<h2 align="center">Hello World!</h2>
 <!--a href="/users/findUsers">
     Test
 </a>
@@ -17,7 +28,10 @@
     Name of the director:<input type="text" name="director"><br>
     <input type="submit" value="Search"><br>
 </form>
-<h3>Find the ratings of the movies by actors or directors</h3>
+
+</div>
+<h3 align="center">Find the ratings of the movies by actors or directors</h3>
+<div class="input_box1">
 <form method="post" action="/movies/findRatings">
     Name of the actor:<input type="text" name="actor"><br>
     Select Range of Age:<!--input type="text" name="yearRange2"><br-->
@@ -35,5 +49,6 @@
     </select> <br>
     <input type="submit" value="Search"><br>
 </form>
+</div>
 </body>
 </html>
