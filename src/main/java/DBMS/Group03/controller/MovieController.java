@@ -1,12 +1,18 @@
 package DBMS.Group03.controller;
+import DBMS.Group03.domain.PersonalRating;
 import DBMS.Group03.domain.Ratings;
 import DBMS.Group03.service.MoviesService;
 import DBMS.Group03.domain.Movies;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/movies")
@@ -43,6 +49,38 @@ public class MovieController {
         System.out.println(list.toString());
         model.addAttribute("MovieRating", list);
         return "ratingList";
+    }
+
+    @RequestMapping("/findPersonalRatings")
+    public String findPersonalRatings(Movies movies, Model model){
+        //movies.split_actor_name();
+        //List<PersonalRating> list=moviesService.findPersonalRatings(movies);
+        //System.out.println(list.toString());
+        //model.addAttribute("PersonalRating",list);
+        return "personalRatings";
+    }
+
+    @RequestMapping("/findPersonalRatingsAjax")
+    public Map<String, List> findPersonalRatingsAjax(String name){
+        String[] full =name.split(" ");
+        String input="%"+full[0]+"%"+full[1]+"%";
+        List<PersonalRating> list=moviesService.findPersonalRatingsAjax(input);
+        //Gson gson=new Gson();
+        //String str=gson.toJson(list);
+        //model.addAttribute("PersonalRatingAjax",list);
+        //return "personalRatingsAjax";
+        ArrayList<Integer> years=new ArrayList<>();
+        ArrayList<Float> ratings=new ArrayList<>();
+
+        for(PersonalRating p: list){
+            years.add(p.getYear());
+            ratings.add(p.getAvgRating());
+        }
+
+        Map<String,List> map=new HashMap<String, List>();
+        map.put("year",years);
+        map.put("ratings",ratings);
+        return map;
     }
 
 

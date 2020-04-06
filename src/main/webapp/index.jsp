@@ -49,6 +49,16 @@
     </select> <br>
     <input type="submit" value="Search"><br>
 </form>
+    <h3 align="center">Find the movies' average rating of each year</h3>
+    <form method="post" action="/movies/findPersonalRatings">
+        Name of the actor:<input type="text" name="actor"><br>
+        <input type="submit" value="search">
+    </form>
+
+    <form method="post" action="/movies/findPersonalRatingsAjax">
+        <input type="text" name="name">
+        <input type="submit" value="search">
+    </form>
 </div>
 </body>
 </html>
