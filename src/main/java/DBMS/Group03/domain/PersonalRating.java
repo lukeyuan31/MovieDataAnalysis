@@ -1,8 +1,12 @@
 package DBMS.Group03.domain;
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 
 public class PersonalRating implements Serializable{
+    @JSONField(name="Year")
     private int year;
+    @JSONField(name="Rating")
     private float avgRating;
 
     public void setAvgRating(float avgRating) {
@@ -23,9 +27,9 @@ public class PersonalRating implements Serializable{
 
     @Override
     public String toString(){
-        return "personalRating{" +
-                "year=" +year +
-                ", avgRating="+avgRating+"}";
+        return "{" +
+                "\"year\":" +year +
+                ", \"avgRating\":"+avgRating+"}";
     }
     /*
     return "Users{" +

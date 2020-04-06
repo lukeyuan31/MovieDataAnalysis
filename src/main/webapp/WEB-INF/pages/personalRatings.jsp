@@ -21,6 +21,68 @@
     <label for="name">Name</label><input id="name" type="text">
     <button onclick="getData()">Search</button>
 </div>
+<script type="text/javascript">
+    var myChart=echarts.init(document.getElementById('main'));
+
+    myChart.setOption({
+        title:{
+            text:'AvgRating'
+        },
+        tooltip:{},
+        legend:{
+            data:['ratings']
+        },
+        xAxis:{
+            data:[]
+        },
+        yAxis:{},
+        series:[{
+            name:'Ratings',
+            type: 'line',
+            data: '[]'
+        }]
+    });
+
+    var years=[];
+    var ratings=[];
+
+    function getData() {
+
+
+        $.ajax({
+            type: "post",
+            async: true,
+            url: "/movies/findPersonalRatingsAjax",
+            data: {name: "DiCaprio Leonardo"},
+            dataType: "json",
+            success: function (result) {
+                //alert(result);
+                if (result) {
+                    //alert(result);
+                    for (var i = 0; i < result.length; i++) {
+                        years.push(result[i].year);
+                        ratings.push(result[i].avgRating);
+                    }
+                    myChart.hideLoading();
+                    myChart.setOption({
+                        xAxis: {
+                            data: years
+                        },
+                        series: [{
+                            name: 'ratings',
+                            data: ratings
+                        }]
+                    });
+                }
+
+            },
+            error: function (errorMsg) {
+                alert("Failed to get data！");
+                myChart.hideLoading();
+            }
+        })
+    }
+</script>
 <!--script>
     /*
     var $year=[];

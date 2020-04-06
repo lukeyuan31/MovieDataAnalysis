@@ -3,11 +3,14 @@ import DBMS.Group03.domain.PersonalRating;
 import DBMS.Group03.domain.Ratings;
 import DBMS.Group03.service.MoviesService;
 import DBMS.Group03.domain.Movies;
+import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,10 +64,15 @@ public class MovieController {
     }
 
     @RequestMapping("/findPersonalRatingsAjax")
-    public Map<String, List> findPersonalRatingsAjax(String name){
+    @ResponseBody
+    public String findPersonalRatingsAjax(String name){
         String[] full =name.split(" ");
         String input="%"+full[0]+"%"+full[1]+"%";
         List<PersonalRating> list=moviesService.findPersonalRatingsAjax(input);
+        System.out.println(list.toString());
+        //System.out.println(list);
+       // String str= JSON.toJSONString(list);
+        //System.out.println(str);
         //Gson gson=new Gson();
         //String str=gson.toJson(list);
         //model.addAttribute("PersonalRatingAjax",list);
@@ -80,7 +88,9 @@ public class MovieController {
         Map<String,List> map=new HashMap<String, List>();
         map.put("year",years);
         map.put("ratings",ratings);
-        return map;
+        System.out.println(map.get("year"));
+        System.out.println(map.get("ratings"));
+        return list.toString();
     }
 
 

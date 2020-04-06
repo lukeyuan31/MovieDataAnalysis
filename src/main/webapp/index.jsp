@@ -55,10 +55,10 @@
         <input type="submit" value="search">
     </form>
 
-    <form method="post" action="/movies/findPersonalRatingsAjax">
+    <!--form method="post" action="/movies/findPersonalRatingsAjax">
         <input type="text" name="name">
         <input type="submit" value="search">
-    </form>
+    </form-->
 </div>
 </body>
 </html>
