@@ -47,22 +47,29 @@
     var ratings=[];
 
     function getData() {
-
+        //myChart.clear();
+        var varname=document.getElementById("name");
+        var name=varname.value;
 
         $.ajax({
             type: "post",
             async: true,
             url: "/movies/findPersonalRatingsAjax",
-            data: {name: "DiCaprio Leonardo"},
+            data: {name: name},
             dataType: "json",
             success: function (result) {
                 //alert(result);
                 if (result) {
                     //alert(result);
+                    console.log(result);
                     for (var i = 0; i < result.length; i++) {
                         years.push(result[i].year);
                         ratings.push(result[i].avgRating);
                     }
+                    //var test='['+result[0].year+','+result[0].avgRating+']';
+                    //alert(test);
+                    //console.log(years);
+                    //console.log(ratings);
                     myChart.hideLoading();
                     myChart.setOption({
                         xAxis: {
@@ -183,6 +190,8 @@
         );
     }
 </script-->
-
+<a href="http://localhost:8080/">
+    <button>Back</button>
+</a>
 </body>
 </html>

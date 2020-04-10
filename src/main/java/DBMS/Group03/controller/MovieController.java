@@ -1,5 +1,6 @@
 package DBMS.Group03.controller;
 import DBMS.Group03.domain.PersonalRating;
+import DBMS.Group03.domain.RatingnQuality;
 import DBMS.Group03.domain.Ratings;
 import DBMS.Group03.service.MoviesService;
 import DBMS.Group03.domain.Movies;
@@ -56,10 +57,7 @@ public class MovieController {
 
     @RequestMapping("/findPersonalRatings")
     public String findPersonalRatings(Movies movies, Model model){
-        //movies.split_actor_name();
-        //List<PersonalRating> list=moviesService.findPersonalRatings(movies);
-        //System.out.println(list.toString());
-        //model.addAttribute("PersonalRating",list);
+        //跳转到下一页面，操作在此页面上完成
         return "personalRatings";
     }
 
@@ -69,14 +67,8 @@ public class MovieController {
         String[] full =name.split(" ");
         String input="%"+full[0]+"%"+full[1]+"%";
         List<PersonalRating> list=moviesService.findPersonalRatingsAjax(input);
+        /*
         System.out.println(list.toString());
-        //System.out.println(list);
-       // String str= JSON.toJSONString(list);
-        //System.out.println(str);
-        //Gson gson=new Gson();
-        //String str=gson.toJson(list);
-        //model.addAttribute("PersonalRatingAjax",list);
-        //return "personalRatingsAjax";
         ArrayList<Integer> years=new ArrayList<>();
         ArrayList<Float> ratings=new ArrayList<>();
 
@@ -90,6 +82,24 @@ public class MovieController {
         map.put("ratings",ratings);
         System.out.println(map.get("year"));
         System.out.println(map.get("ratings"));
+         */
+        //直接调用重写的toString方法将list转换成JSON
+        System.out.println(list.toString());
+        return list.toString();
+    }
+
+    @RequestMapping("/findRatingnQuality")
+    public String findRatingnQuality(){
+        return "RatingsandQuality";
+    }
+
+    @RequestMapping("/findRatingnQualityAjax")
+    @ResponseBody
+    public String findRatingnQualityAjax(String name){
+        String[] full =name.split(" ");
+        String input="%"+full[0]+"%"+full[1]+"%";
+        List<RatingnQuality> list=moviesService.findRatingnQualityAjax(input);
+        System.out.println(list.toString());
         return list.toString();
     }
 

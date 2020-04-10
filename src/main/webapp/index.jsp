@@ -51,10 +51,13 @@
 </form>
     <h3 align="center">Find the movies' average rating of each year</h3>
     <form method="post" action="/movies/findPersonalRatings">
-        Name of the actor:<input type="text" name="actor"><br>
-        <input type="submit" value="search">
+        <input type="submit" value="Enter">
     </form>
 
+
+    <form method="post" action="/movies/findRatingnQuality">
+        <input type="submit" value="Enter">
+    </form>
     <!--form method="post" action="/movies/findPersonalRatingsAjax">
         <input type="text" name="name">
         <input type="submit" value="search">

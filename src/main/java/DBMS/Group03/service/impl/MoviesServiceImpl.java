@@ -2,6 +2,7 @@ package DBMS.Group03.service.impl;
 import DBMS.Group03.dao.UsersDao;
 import DBMS.Group03.domain.Movies;
 import DBMS.Group03.domain.PersonalRating;
+import DBMS.Group03.domain.RatingnQuality;
 import DBMS.Group03.domain.Ratings;
 import DBMS.Group03.service.MoviesService;
 import DBMS.Group03.dao.MovieDao;
@@ -37,5 +38,10 @@ public class MoviesServiceImpl implements MoviesService{
     @Override
     public List<PersonalRating> findPersonalRatingsAjax(String name){
         return movieDao.findPersonalRatingsAjax(name);
+    }
+
+    @Override
+    public List<RatingnQuality> findRatingnQualityAjax(String name){
+        return movieDao.findRatingnQuality(name);
     }
 }

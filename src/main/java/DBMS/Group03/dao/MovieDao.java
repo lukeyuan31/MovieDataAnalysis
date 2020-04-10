@@ -1,6 +1,7 @@
 package DBMS.Group03.dao;
 import DBMS.Group03.domain.Movies;
 import DBMS.Group03.domain.PersonalRating;
+import DBMS.Group03.domain.RatingnQuality;
 import DBMS.Group03.domain.Ratings;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -63,4 +64,20 @@ public interface MovieDao {
             "ORDER BY m.year asc ")
     public List<PersonalRating> findPersonalRatingsAjax(String name);
 
+
+
+    @Select("SELECT m.year, avg(um.rating) as avgRating,\n" +
+            "count(distinct m.movie_id) as numOfFilm, \n" +
+            "avg(d.d_quality) as avgDirQuality\n" +
+            "from \n" +
+            "actors a,movies m, movies_actors ma, user_movie um,directors d,movies_dirs md\n" +
+            "WHERE a.actor_id=ma.a_id\n" +
+            "and m.movie_id=ma.m_id\n" +
+            "and ma.m_id=um.m_id\n" +
+            "and m.movie_id=md.m_id\n" +
+            "and md.d_id=d.director_id\n" +
+            "and a.a_name like #{name}\n" +
+            "group by m.year\n" +
+            "ORDER BY m.year asc")
+    public List<RatingnQuality> findRatingnQuality(String name);
 }
