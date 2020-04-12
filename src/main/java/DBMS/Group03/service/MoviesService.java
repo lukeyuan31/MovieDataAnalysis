@@ -9,7 +9,7 @@ public interface MoviesService {
     public List<PersonalRating> findPersonalRatings(Movies movies);
     public List<PersonalRating> findPersonalRatingsAjax(String name);
     public List<RatingnQuality> findRatingnQualityAjax(String name);
-
     public List<GenderRatio> findGenderRatio();
+    public List<GenreNum> findGenreNum();
 
 }

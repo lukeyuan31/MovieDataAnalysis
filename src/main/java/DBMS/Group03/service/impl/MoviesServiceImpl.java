@@ -3,6 +3,7 @@ import DBMS.Group03.dao.UsersDao;
 import DBMS.Group03.domain.*;
 import DBMS.Group03.service.MoviesService;
 import DBMS.Group03.dao.MovieDao;
+//import com.sun.tools.javac.jvm.Gen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,10 @@ public class MoviesServiceImpl implements MoviesService{
     @Override
     public List<GenderRatio> findGenderRatio(){
         return movieDao.findGenderRatio();
+    }
+
+    @Override
+    public List<GenreNum> findGenreNum(){
+        return movieDao.findGenreNum();
     }
 }

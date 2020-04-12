@@ -65,6 +65,10 @@
     <form method="post" action="/movies/findGenderRatio">
         <input type="submit" value="Enter">
     </form>
+
+    <form method="post" action="/movies/findGenreNum">
+        <input type="submit" value="Enter">
+    </form>
 </div>
 </body>
 </html>

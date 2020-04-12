@@ -106,4 +106,31 @@ public interface MovieDao {
             "GROUP BY year \n" +
             "ORDER BY year asc")
     public List<GenderRatio>  findGenderRatio();
+
+
+    @Select("select b.genre_count as num, b.genre, b.year \n" +
+            "from(\n" +
+            "\n" +
+            "Select MAX(genre_count) AS max_genre_count, year \n" +
+            "from  \n" +
+            "(\n" +
+            "Select count(genre) as genre_count,genre, year \n" +
+            "from movies, movies_dirs \n" +
+            "where m_id = movie_id \n" +
+            "group by year, genre\n" +
+            ")\n" +
+            "group by year\n" +
+            "\n" +
+            ") a,\n" +
+            "(\n" +
+            "Select count(genre) as genre_count,genre, year \n" +
+            "from movies, movies_dirs \n" +
+            "where m_id = movie_id \n" +
+            "group by year, genre\n" +
+            ") b\n" +
+            "where\n" +
+            "a.max_genre_count = b.genre_count\n" +
+            "and a.year = b.year\n" +
+            "order by year asc")
+    public List<GenreNum> findGenreNum();
 }

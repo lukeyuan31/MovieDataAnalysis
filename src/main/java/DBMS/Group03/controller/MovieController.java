@@ -113,5 +113,18 @@ public class MovieController {
         return list.toString();
     }
 
+    @RequestMapping("/findGenreNum")
+    public String findGenreNum(){
+        return "GenreNum";
+    }
+
+    @RequestMapping("/findGenreNumAjax")
+    @ResponseBody
+    public String findGenreNumAjax(){
+        List<GenreNum> list=moviesService.findGenreNum();
+        System.out.println(list.toString());
+        return list.toString();
+    }
+
 
 }
