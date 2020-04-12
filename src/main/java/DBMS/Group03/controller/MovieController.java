@@ -1,9 +1,6 @@
 package DBMS.Group03.controller;
-import DBMS.Group03.domain.PersonalRating;
-import DBMS.Group03.domain.RatingnQuality;
-import DBMS.Group03.domain.Ratings;
+import DBMS.Group03.domain.*;
 import DBMS.Group03.service.MoviesService;
-import DBMS.Group03.domain.Movies;
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -99,6 +96,19 @@ public class MovieController {
         String[] full =name.split(" ");
         String input="%"+full[0]+"%"+full[1]+"%";
         List<RatingnQuality> list=moviesService.findRatingnQualityAjax(input);
+        System.out.println(list.toString());
+        return list.toString();
+    }
+
+    @RequestMapping("/findGenderRatio")
+    public String findGenderRatio(){
+        return "GenderRatio";
+    }
+
+    @RequestMapping("/findGenderRatioAjax")
+    @ResponseBody
+    public String findGenderRatioAjax(){
+        List<GenderRatio> list=moviesService.findGenderRatio();
         System.out.println(list.toString());
         return list.toString();
     }

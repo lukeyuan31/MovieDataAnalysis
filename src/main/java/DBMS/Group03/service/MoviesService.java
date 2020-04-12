@@ -1,8 +1,6 @@
 package DBMS.Group03.service;
-import DBMS.Group03.domain.Movies;
-import DBMS.Group03.domain.RatingnQuality;
-import DBMS.Group03.domain.Ratings;
-import DBMS.Group03.domain.PersonalRating;
+import DBMS.Group03.domain.*;
+
 import java.util.List;
 
 public interface MoviesService {
@@ -11,5 +9,7 @@ public interface MoviesService {
     public List<PersonalRating> findPersonalRatings(Movies movies);
     public List<PersonalRating> findPersonalRatingsAjax(String name);
     public List<RatingnQuality> findRatingnQualityAjax(String name);
+
+    public List<GenderRatio> findGenderRatio();
 
 }

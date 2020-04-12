@@ -60,27 +60,6 @@
                         shadowOffsetY: 0,
                         shadowColor: 'rgba(0, 0, 0, 0.5)'
                     };
-                    /*
-                    var schema = [
-                        {name: 'date', index: 0, text: '日'},
-                        {name: 'AQIindex', index: 1, text: 'AQI指数'},
-                        {name: 'PM25', index: 2, text: 'PM2.5'},
-                        {name: 'PM10', index: 3, text: 'PM10'},
-                        {name: 'CO', index: 4, text: '一氧化碳（CO）'},
-                        {name: 'NO2', index: 5, text: '二氧化氮（NO2）'},
-                        {name: 'SO2', index: 6, text: '二氧化硫（SO2）'}
-                    ];
-
-
-                    var itemStyle = {
-                        opacity: 0.8,
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowOffsetY: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    };
-
-                     */
 
                     var option = {
                         backgroundColor: '#404a59',
@@ -229,21 +208,6 @@
                         ],
 
                         series: [
-                            /*
-                            {
-                                name: '北京',
-                                type: 'scatter',
-                                itemStyle: itemStyle,
-                                data: dataBJ
-                            },
-                            {
-                                name: '上海',
-                                type: 'scatter',
-                                itemStyle: itemStyle,
-                                data: dataSH
-                            },
-
-                             */
                             {
                                 name: 'Name',
                                 type: 'scatter',

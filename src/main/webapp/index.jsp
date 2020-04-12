@@ -54,7 +54,7 @@
         <input type="submit" value="Enter">
     </form>
 
-
+    <h3 align="center">Find the actor's average rating of each year</h3>
     <form method="post" action="/movies/findRatingnQuality">
         <input type="submit" value="Enter">
     </form>
@@ -62,6 +62,9 @@
         <input type="text" name="name">
         <input type="submit" value="search">
     </form-->
+    <form method="post" action="/movies/findGenderRatio">
+        <input type="submit" value="Enter">
+    </form>
 </div>
 </body>
 </html>

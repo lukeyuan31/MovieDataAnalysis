@@ -1,9 +1,6 @@
 package DBMS.Group03.service.impl;
 import DBMS.Group03.dao.UsersDao;
-import DBMS.Group03.domain.Movies;
-import DBMS.Group03.domain.PersonalRating;
-import DBMS.Group03.domain.RatingnQuality;
-import DBMS.Group03.domain.Ratings;
+import DBMS.Group03.domain.*;
 import DBMS.Group03.service.MoviesService;
 import DBMS.Group03.dao.MovieDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +40,10 @@ public class MoviesServiceImpl implements MoviesService{
     @Override
     public List<RatingnQuality> findRatingnQualityAjax(String name){
         return movieDao.findRatingnQuality(name);
+    }
+
+    @Override
+    public List<GenderRatio> findGenderRatio(){
+        return movieDao.findGenderRatio();
     }
 }

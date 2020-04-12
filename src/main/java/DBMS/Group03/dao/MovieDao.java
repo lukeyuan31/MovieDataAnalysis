@@ -1,8 +1,5 @@
 package DBMS.Group03.dao;
-import DBMS.Group03.domain.Movies;
-import DBMS.Group03.domain.PersonalRating;
-import DBMS.Group03.domain.RatingnQuality;
-import DBMS.Group03.domain.Ratings;
+import DBMS.Group03.domain.*;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -80,4 +77,33 @@ public interface MovieDao {
             "group by m.year\n" +
             "ORDER BY m.year asc")
     public List<RatingnQuality> findRatingnQuality(String name);
+
+    @Select("SELECT year, AVG(ratio) as ratio\n" +
+            "FROM(\n" +
+            "SELECT * \n" +
+            "FROM movies,\n" +
+            "(SELECT male.m_id, Fnum/Mnum as ratio\n" +
+            "FROM\n" +
+            "(SELECT movies_actors.m_id,COUNT(m.actor_id) as Mnum\n" +
+            "FROM \n" +
+            "(SELECT * \n" +
+            "FROM actors\n" +
+            "WHERE a_gender='M') m, \n" +
+            "movies_actors\n" +
+            "where m.actor_id=movies_actors.a_id\n" +
+            "GROUP BY movies_actors.m_id) male,\n" +
+            "(SELECT movies_actors.m_id,COUNT(m.actor_id) as Fnum\n" +
+            "FROM \n" +
+            "(SELECT * \n" +
+            "FROM actors\n" +
+            "WHERE a_gender='F') m, \n" +
+            "movies_actors\n" +
+            "where m.actor_id=movies_actors.a_id\n" +
+            "GROUP BY movies_actors.m_id) female\n" +
+            "WHERE male.m_id=female.m_id) MFratio\n" +
+            "WHERE movies.movie_id=MFratio.m_id\n" +
+            ")\n" +
+            "GROUP BY year \n" +
+            "ORDER BY year asc")
+    public List<GenderRatio>  findGenderRatio();
 }
