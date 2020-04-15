@@ -9,7 +9,7 @@ import java.util.List;
 public interface MovieDao {
     //根据输入的影星获得电影名字
 
-    @Select("SELECT m.m_name from MOVIES m , MOVIES_ACTORS ma, ACTORS a, DIRECTORS d, MOVIES_DIRS md " +
+    @Select("SELECT m.m_name as Title from MOVIES m , MOVIES_ACTORS ma, ACTORS a, DIRECTORS d, MOVIES_DIRS md " +
             "WHERE ma.m_id=m.movie_id " +
             "and md.m_id=ma.m_id " +
             "and ma.a_id=a.actor_id\n" +
@@ -17,7 +17,7 @@ public interface MovieDao {
             "and a.a_name like #{searchString1} " +
             "and d.d_name like #{searchString2} "
             )
-    public List<String> findMovie(Movies movies);
+    public List<Movies> findMovie(Movies movies);
 
     @Select("SELECT * FROM\n" +
             "(SELECT m.m_name as MovieName, AVG(um.rating) as avgRating \n" +

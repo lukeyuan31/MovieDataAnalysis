@@ -16,7 +16,7 @@ public class MoviesServiceImpl implements MoviesService{
     private MovieDao movieDao;
 
     @Override
-    public List<String> findMovies(Movies movies){
+    public List<Movies> findMovies(Movies movies){
         System.out.println("查找电影");
         return movieDao.findMovie(movies);
     }

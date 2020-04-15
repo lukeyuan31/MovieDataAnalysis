@@ -4,6 +4,7 @@ import java.io.Serializable;
 public class Movies implements Serializable{
     private String actor;
     private String director;
+    private String Title;
 
     private String actor_first_name;
     private String actor_last_name;
@@ -22,6 +23,14 @@ public class Movies implements Serializable{
 
     //rowNum用于决定返回的结果数量
     private String rownum;
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
 
     public void toInteger(){
         System.out.println(yearRange2);
@@ -46,7 +55,7 @@ public class Movies implements Serializable{
 
     //将输入的名字拆分后结合成sql嵌入实现模糊搜索
     public String getSearchString() {
-        return searchString1;
+        return searchString1+searchString2;
     }
 
     public String getActor() {
@@ -91,5 +100,11 @@ public class Movies implements Serializable{
 
     public void setRownum(String rownum) {
         this.rownum = rownum;
+    }
+
+    @Override
+    public String toString(){
+        return "{"+
+                "\"Title\": \""+Title+"\"}";
     }
 }

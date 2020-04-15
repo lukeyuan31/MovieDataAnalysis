@@ -29,11 +29,8 @@ public class MovieController {
         //System.out.println(movies.getActor_first_name());
         //System.out.println(movies.getActor_last_name());
         System.out.println(movies.getSearchString());
-        List<String> list=moviesService.findMovies(movies);
-        for (int i=0;i<list.size();i++){
-            String temp=list.get(i);
-            list.set(i,temp+"\n");
-        }
+        List<Movies> list=moviesService.findMovies(movies);
+
         //System.out.println(list.get(1));
         model.addAttribute("MovieList", list);
         return "movieList";
@@ -123,6 +120,30 @@ public class MovieController {
     public String findGenreNumAjax(){
         List<GenreNum> list=moviesService.findGenreNum();
         System.out.println(list.toString());
+        return list.toString();
+    }
+
+    @RequestMapping("/test")
+    public String test(){
+        return "test";
+    }
+
+    @RequestMapping("/findMoviesAjax")
+    @ResponseBody
+    public String findMoviesAjax(String actorName, String directorName){
+        System.out.println("查找电影");
+        Movies temp=new Movies();
+        temp.setActor(actorName);
+        temp.setDirector(directorName);
+        temp.split_actor_name();
+        temp.split_director_name();
+        //System.out.println(movies.getActor_first_name());
+        //System.out.println(movies.getActor_last_name());
+        System.out.println(temp.getSearchString());
+        List<Movies> list=moviesService.findMovies(temp);
+        //System.out.println(list.get(1));
+        //model.addAttribute("MovieList", list);
+        System.out.println(list.toString()+"test");
         return list.toString();
     }
 

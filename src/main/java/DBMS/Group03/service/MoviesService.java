@@ -4,7 +4,7 @@ import DBMS.Group03.domain.*;
 import java.util.List;
 
 public interface MoviesService {
-    public List<String> findMovies(Movies movies);
+    public List<Movies> findMovies(Movies movies);
     public List<Ratings> findRatings(Movies movies);
     public List<PersonalRating> findPersonalRatings(Movies movies);
     public List<PersonalRating> findPersonalRatingsAjax(String name);
