@@ -2,6 +2,7 @@
 <html class="no-js" lang="en">
 
 <head>
+    <title>Movie Data</title>
     <!-- meta data -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -219,9 +220,10 @@
                         <p>
                             Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
                         </p>
-                        <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                            read more
-                        </button>
+                        <form method="post" action="/movies/findPersonalRatings">
+                            <input type="submit" class="welcome-hero-btn how-work-btn" value="Enter">
+                        </form>
+
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
@@ -233,9 +235,9 @@
                         <p>
                             Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
                         </p>
-                        <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                            read more
-                        </button>
+                        <form method="post" action="/movies/findRatingnQuality">
+                            <input type="submit" class="welcome-hero-btn how-work-btn" value="Enter">
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
@@ -247,9 +249,9 @@
                         <p>
                             Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
                         </p>
-                        <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                            read more
-                        </button>
+                        <form method="post" action="/movies/findGenreNum">
+                            <input class="welcome-hero-btn how-work-btn" type="submit" value="Enter">
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
@@ -257,13 +259,14 @@
                         <div class="single-how-works-icon">
                             <i class="flaticon-location-on-road"></i>
                         </div>
-                        <h2><a href="#">explore <span> amazing</span> place</a></h2>
+                        <h2><a href="#">Male/<span>Female</span> Ratio</a></h2>
                         <p>
-                            Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
+                            A trend that shows you the ratio of male and female in movie industry
                         </p>
-                        <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                            read more
-                        </button>
+                        <form method="post" action="/movies/findGenderRatio">
+                            <input class="welcome-hero-btn how-work-btn" type="submit" value="Enter">
+
+                        </form>
                     </div>
                 </div>
             </div>
@@ -444,7 +447,7 @@
         var actorName=actorNameadr.value;
         var directorNameadr=document.getElementById("director");
         var directorName=directorNameadr.value;
-        alert(actorName+directorName);
+        //alert(actorName+directorName);
 
         $.ajax(
             {
