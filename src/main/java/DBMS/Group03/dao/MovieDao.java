@@ -156,4 +156,48 @@ public interface MovieDao {
             "GROUP BY year\n" +
             "ORDER BY year asc\n")
     public List<GoodActorRatio> findGoodActorRatio();
+
+    @Select("SELECT year, AVG(difference) as difference\n" +
+            "FROM movies,\n" +
+            "(SELECT m_rating.m_id, avg_score-avg_quality as Difference\n" +
+            "FROM\n" +
+            "(SELECT m_id, AVG(rating) avg_score\n" +
+            "FROM user_movie\n" +
+            "GROUP BY m_id) m_rating,\n" +
+            "(SELECT m_id, AVG(a_quality) avg_quality\n" +
+            "FROM movies_actors, actors\n" +
+            "WHERE a_id=actor_id\n" +
+            "GROUP BY m_id) m_quality\n" +
+            "WHERE m_rating.m_id=m_quality.m_id)\n" +
+            "WHERE m_id=movie_id\n" +
+            "GROUP BY year\n" +
+            "ORDER BY year")
+    public List<QualityDifference> findQualityDifference();
+
+    @Select("SELECT l1.year as year, (l1.count1/l2.count2)*100 as percentage\n" +
+            "FROM\n" +
+            "(SELECT  year, COUNT(*) as count1\n" +
+            "FROM movies,\n" +
+            "(SELECT m_id, AVG(rating) as avg_score\n" +
+            "FROM user_movie\n" +
+            "GROUP BY m_id) a_movie\n" +
+            "WHERE movies.movie_id=a_movie.m_id\n" +
+            "AND (avg_score<(\n" +
+            "SELECT AVG(avg_rating)\n" +
+            "FROM\n" +
+            "(SELECT AVG(RATING) as avg_rating, m_id\n" +
+            "FROM user_movie\n" +
+            "GROUP BY M_ID)))\n" +
+            "GROUP BY year\n" +
+            "ORDER BY year) l1,\n" +
+            "(SELECT year, COUNT (*) as count2\n" +
+            "FROM Movies\n" +
+            "GROUP BY year\n" +
+            "HAVING COUNT (*) >3\n" +
+            "ORDER BY year) l2\n" +
+            "WHERE l1.year=l2.year\n" +
+            "order by year")
+    public List<BelowAvgPercentage> findBelowAvgPercentage();
+
+
 }

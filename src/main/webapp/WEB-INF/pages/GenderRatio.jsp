@@ -107,6 +107,10 @@
     <div align="center">
         <button class="welcome-hero-btn" onclick="getData()">Search</button>
     </div>
+    <br>
+    <a href="http://localhost:8080/">
+        <button class="welcome-hero-btn">Back</button>
+    </a>
 </div>
 </section>
 

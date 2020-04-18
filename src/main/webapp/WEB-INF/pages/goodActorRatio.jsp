@@ -107,7 +107,6 @@
     <div class="container">
         <div id="main" style="width: 800px;height:600px; margin: auto; background: rgba(0,0,0,0.3); background: snow"></div>
         <div align="center">
-            Start Year:
             <!--select id="year1">
                 <option value="1900" selected>1900</option>
                 <option value="1910">1910</option>
@@ -135,8 +134,11 @@
                 <option value="2000">2000</option>
                 <option value="2010" selected>2010</option>
             </select--><br>
-            <br>
             <button class="welcome-hero-btn" onclick="getData()">Search</button>
+            <br>
+            <a href="http://localhost:8080/">
+                <button class="welcome-hero-btn">Back</button>
+            </a>
         </div>
     </div>
 </section>

@@ -59,4 +59,14 @@ public class MoviesServiceImpl implements MoviesService{
         //System.out.println("impl"+year1+"+"+year2);
         return movieDao.findGoodActorRatio();
     }
+
+    @Override
+    public List<QualityDifference> findQualityDifference() {
+        return movieDao.findQualityDifference();
+    }
+
+    @Override
+    public List<BelowAvgPercentage> findBelowAvgPercentage() {
+        return movieDao.findBelowAvgPercentage();
+    }
 }

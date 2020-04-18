@@ -1,14 +1,22 @@
 <%--
   Created by IntelliJ IDEA.
   User: lukeyuan
-  Date: 2020/4/12
-  Time: 12:23 上午
+  Date: 2020/4/18
+  Time: 4:16 下午
+  To change this template use File | Settings | File Templates.
+--%>
+<%--
+  Created by IntelliJ IDEA.
+  User: lukeyuan
+  Date: 2020/4/11
+  Time: 5:24 下午
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Genre</title>
+    <title>Gender Ratio</title>
+    <!-- meta data -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,12 +62,13 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
+    <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <script type="text/javascript" src="../../js/echarts (2).js" ></script>
     <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+    <![endif]-->
 </head>
-
 <script type="text/javascript" src="../../js/echarts.js" ></script>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
 <body>
@@ -75,7 +84,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html">DB<span>MS</span></a>
+                    <a class="navbar-brand" href="localhost:8080">DB<span>MS</span></a>
 
                 </div><!--/.navbar-header-->
                 <!-- End Header Navigation -->
@@ -99,14 +108,19 @@
 
 </section>
 
-<section class="welcome-hero">
-<div id="main" style="width: 800px;height:600px; margin: auto;background: snow"></div>
-    <br>
-    <br>
-    <a href="http://localhost:8080/">
-        <button class="welcome-hero-btn">Back</button>
-    </a>
+<section id="home" class="welcome-hero">
+    <div class="container">
+        <div id="main" style="width: 800px;height:600px; margin: auto; background: rgba(0,0,0,0.3); background: snow"></div>
+        <div align="center">
+            <button class="welcome-hero-btn" onclick="getData()">Search</button>
+        </div>
+        <br>
+        <a href="http://localhost:8080/">
+            <button class="welcome-hero-btn">Back</button>
+        </a>
+    </div>
 </section>
+
 
 <footer id="footer"  class="footer">
     <div class="container">
@@ -146,107 +160,143 @@
 
 
 </footer>
+
 <script type="text/javascript">
     var myChart=echarts.init(document.getElementById('main'));
+    //var Chartdata=[];
 
-    var Chartdata=[];
     var year=[];
-    var num=[];
-    var genre=[];
+    var ratio=[];
 
-    $.ajax({
-        type:"post",
-        async: true,
-        url: "/movies/findGenreNumAjax",
-        data:{},
-        dataType: "json",
-        success:function (result) {
-            console.log(result);
-            for (var i=0;i<result.length;i++){
-                Chartdata.push([result[i].year,result[i].genre,result[i].number]);
-                year.push(result[i].year);
-                num.push(result[i].number);
-                genre.push(result[i].genre);
-            }
-
-            //console.log(Chartdata);
-            console.log(genre);
-            var schema=[
-                {name: 'year', index:0,text: 'Year'},
-                {name: 'genre', index:1, text:'Type of Movie'},
-                {name: 'num', index:2, text: 'Number of Movies'}
-            ];
-
-            var option = {
-                color: ['#3398DB'],
-                tooltip: {
-
-                    trigger: 'axis',
-                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                    },
-                    formatter: '{a0}: {c0}'+'<br>'+
-                               '{a1}: {c1}'
-                    /*
-                    formatter: function(params) {
-                        console.log(params);
-                        console.log(params[24].genre);
+    function getData() {
+        $.ajax(
+            {
+                type: "post",
+                async: true,
+                url: "/movies/findQualityDifferenceAjax",
+                data: {},
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    for (var i = 0; i < result.length; i++) {
+                        year.push(result[i].year);
+                        ratio.push(result[i].QualityDifference);
                     }
 
-                     */
-                },
-                grid: {
-                    left: '3%',
-                    right: '4%',
-                    bottom: '3%',
-                    containLabel: true
-                },
-                xAxis: [
-                    {
-                        type: 'category',
-                        data: year,
-                        axisTick: {
-                            alignWithLabel: true
-                        }
-                    }
-                ],
-                yAxis: [
-                    {
-                        type: 'value'
-                    }
-                ],
+                    console.log(year);
+                    console.log(ratio);
 
-                series: [
-                    {
-                        name: 'Number',
-                        type: 'bar',
-                        barWidth: '60%',
-                        data: num
-                    },
-                    {
-                        name: 'Type',
-                        type: 'line',
-                        symbolSize: 0, // symbol的大小设置为0
-                        showSymbol: false, // 不显示symbol
-                        lineStyle: {
-                            width: 0, // 线宽是0
-                            color: 'rgba(0, 0, 0, 0)' // 线的颜色是透明的
+                    option = {
+                        title: {
+                            text: 'Quality Difference'
                         },
-                        data: genre
-                    }
-                ]
-            };
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        xAxis: {
+                            data: year
+                        },
+                        yAxis: {
+                            splitLine: {
+                                show: false
+                            }
+                        },
+                        toolbox: {
+                            left: 'center',
+                            feature: {
+                                dataZoom: {
+                                    yAxisIndex: 'none'
+                                },
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        dataZoom: [ {
+                            type: 'inside',
+                            start:10,
+                            end: 60
+                        },
+                            {
+                                start: 10,
+                                end: 60,
+                                handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                                handleSize: '80%',
+                                handleStyle: {
+                                    color: '#fff',
+                                    shadowBlur: 3,
+                                    shadowColor: 'rgba(0, 0, 0, 0.6)',
+                                    shadowOffsetX: 2,
+                                    shadowOffsetY: 2
+                                }
+                            }],
+                        visualMap: {
+                            top: 10,
+                            right: 10,
+                            pieces: [{
+                                gt: -1.0,
+                                lte: -0.5,
+                                color: '#096'
+                            }, {
+                                gt: -0.5,
+                                lte: 0,
+                                color: '#ffde33'
+                            }, {
+                                gt: 0,
+                                lte: 0.5,
+                                color: '#ff9933'
+                            }, {
+                                gt: 0.5,
+                                lte: 1.0,
+                                color: '#cc0033'
+                            }, {
+                                gt: 1.0,
+                                lte: 1.5,
+                                color: '#660099'
+                            }, {
+                                gt: 1.5,
+                                color: '#7e0023'
+                            }],
+                            outOfRange: {
+                                color: '#999'
+                            }
+                        },
+                        series: {
+                            name: 'Difference',
+                            type: 'line',
+                            data: ratio,
+                            markLine: {
+                                silent: true,
+                                data: [{
+                                    yAxis: -1.0
+                                }, {
+                                    yAxis: -0.5
+                                }, {
+                                    yAxis: 0.0
+                                }, {
+                                    yAxis: 0.5
+                                }, {
+                                    yAxis: 1.0
+                                }]
+                            }
+                        }
+                    };
+                    myChart.setOption(option);
 
-            myChart.setOption(option);
+                },
+                error: function (errorMsg) {
+                    alert("Failed to get data");
+                }
+
+            }
+        )
+    }
 
 
-        },
-        error: function (errorMsg) {
-            alert("Failed to get data");
-        }
-    })
+
+
+
+
 </script>
-
 
 </body>
 </html>

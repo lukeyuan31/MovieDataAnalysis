@@ -164,5 +164,31 @@ public class MovieController {
         return list.toString();
     }
 
+    @RequestMapping("/findQualityDifference")
+    public String findQualityDifference(){
+        return "QualityDifference";
+    }
+
+    @RequestMapping("/findQualityDifferenceAjax")
+    @ResponseBody
+    public String findQualityDifferenceAjax(){
+        List<QualityDifference> list=moviesService.findQualityDifference();
+        System.out.println(list.toString());
+        return list.toString();
+    }
+
+    @RequestMapping("/findBelowAvgPercentage")
+    public String findBelowAvgPercentage(){
+        return "BelowAvgPercentage";
+    }
+
+    @RequestMapping("/findBelowAvgPercentageAjax")
+    @ResponseBody
+    public String findBelowAvgPercentageAjax(){
+        List<BelowAvgPercentage> list=moviesService.findBelowAvgPercentage();
+        System.out.println(list.toString());
+        return list.toString();
+    }
+
 
 }

@@ -257,7 +257,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-how-works">
                         <div class="single-how-works-icon">
-                            <i class="flaticon-location-on-road"></i>
+                            <i class="flaticon-list-with-dots"></i>
                         </div>
                         <h2><a href="#">Male/<span>Female</span> Ratio</a></h2>
                         <p>
@@ -272,13 +272,43 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-how-works">
                         <div class="single-how-works-icon">
-                            <i class="flaticon-location-on-road"></i>
+                            <i class="flaticon-gps-fixed-indicator"></i>
                         </div>
                         <h2><a href="#">Good<span>Actors</span> Ratio</a></h2>
                         <p>
                             A trend that shows you the ratio of good actors in a movie each year
                         </p>
                         <form method="post" action="/movies/findGoodActorRatio">
+                            <input class="welcome-hero-btn how-work-btn" type="submit" value="Enter">
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-how-works">
+                        <div class="single-how-works-icon">
+                            <i class="flaticon-restaurant"></i>
+                        </div>
+                        <h2><a href="#">Quality Difference</a></h2>
+                        <p>
+                            A trend that shows you the difference between rating of actors and the movie itself
+                        </p>
+                        <form method="post" action="/movies/findQualityDifference">
+                            <input class="welcome-hero-btn how-work-btn" type="submit" value="Enter">
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-how-works">
+                        <div class="single-how-works-icon">
+                            <i class="flaticon-search"></i>
+                        </div>
+                        <h2><a href="#">Below Average Rate</a></h2>
+                        <p>
+                            A trend that shows you the percentage of movies that are below average rating of the year
+                        </p>
+                        <form method="post" action="/movies/findBelowAvgPercentage">
                             <input class="welcome-hero-btn how-work-btn" type="submit" value="Enter">
 
                         </form>
@@ -462,10 +492,11 @@
             {
                 type: 'post',
                 async: true,
-                url: "findMoviesAjax",
+                url: "/movies/findMoviesAjax",
                 data:{actorName: actorName, directorName:directorName},
                 dataType: "json",
                 success: function (result) {
+                    resultTitle=[];
                     for(var i=0;i<result.length;i++){
                         resultTitle.push(result[i].Title);
                     }

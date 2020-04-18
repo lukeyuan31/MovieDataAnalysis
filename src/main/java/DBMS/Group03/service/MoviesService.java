@@ -12,5 +12,7 @@ public interface MoviesService {
     public List<GenderRatio> findGenderRatio();
     public List<GenreNum> findGenreNum();
     public List<GoodActorRatio> findGoodActorRatio();
+    public List<QualityDifference> findQualityDifference();
+    public List<BelowAvgPercentage> findBelowAvgPercentage();
 
 }

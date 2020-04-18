@@ -192,6 +192,8 @@
             success: function (result) {
                 //alert(result);
                 if (result) {
+                    years=[];
+                    ratings=[];
                     //alert(result);
                     console.log(result);
                     for (var i = 0; i < result.length; i++) {

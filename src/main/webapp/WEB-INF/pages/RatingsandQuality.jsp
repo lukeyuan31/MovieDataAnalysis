@@ -106,6 +106,11 @@
     <div align="center">
         <label for="name">Name</label><input id="name" type="text">
         <button onclick="getData()" class="welcome-hero-btn">Search</button>
+        <br>
+        <br>
+        <a href="http://localhost:8080/">
+            <button class="welcome-hero-btn">Back</button>
+        </a>
     </div>
 </section>
 
@@ -165,6 +170,7 @@
                 data: {name: name},
                 dataType: "json",
                 success: function (result) {
+                    Chartdata=[];
                     //console.log(result);
                     for (var i = 0;i<result.length;i++){
                         Chartdata.push([result[i].year,result[i].avgRating,result[i].numOfFilm,result[i].avgDirQuality]);
