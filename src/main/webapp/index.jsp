@@ -79,7 +79,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html">list<span>race</span></a>
+                    <a class="navbar-brand" href="index.html">DB<span>MS</span></a>
 
                 </div><!--/.navbar-header-->
                 <!-- End Header Navigation -->
@@ -216,9 +216,9 @@
                         <div class="single-how-works-icon">
                             <i class="flaticon-lightbulb-idea"></i>
                         </div>
-                        <h2><a href="#">choose <span> what to</span> do</a></h2>
+                        <h2><a href="#">Personal <span> </span> Ratings</a></h2>
                         <p>
-                            Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
+                            A trend that shows the average ratings of the select actor's movies each year
                         </p>
                         <form method="post" action="/movies/findPersonalRatings">
                             <input type="submit" class="welcome-hero-btn how-work-btn" value="Enter">
@@ -231,9 +231,9 @@
                         <div class="single-how-works-icon">
                             <i class="flaticon-networking"></i>
                         </div>
-                        <h2><a href="#">find <span> what you want</span></a></h2>
+                        <h2><a href="#">Rating <span> and</span> Quality</a></h2>
                         <p>
-                            Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
+                            A trend that shows both the average ratings of the select actor's movie and the average quality of the directors.
                         </p>
                         <form method="post" action="/movies/findRatingnQuality">
                             <input type="submit" class="welcome-hero-btn how-work-btn" value="Enter">
@@ -245,9 +245,9 @@
                         <div class="single-how-works-icon">
                             <i class="flaticon-location-on-road"></i>
                         </div>
-                        <h2><a href="#">explore <span> amazing</span> place</a></h2>
+                        <h2><a href="#">Find <span> Genre</span> Number</a></h2>
                         <p>
-                            Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmod tempor incididunt ut laboremagna aliqua.
+                            A trend that shows the type of movies with the highest average rating of the year.
                         </p>
                         <form method="post" action="/movies/findGenreNum">
                             <input class="welcome-hero-btn how-work-btn" type="submit" value="Enter">
@@ -264,6 +264,21 @@
                             A trend that shows you the ratio of male and female in movie industry
                         </p>
                         <form method="post" action="/movies/findGenderRatio">
+                            <input class="welcome-hero-btn how-work-btn" type="submit" value="Enter">
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-how-works">
+                        <div class="single-how-works-icon">
+                            <i class="flaticon-location-on-road"></i>
+                        </div>
+                        <h2><a href="#">Good<span>Actors</span> Ratio</a></h2>
+                        <p>
+                            A trend that shows you the ratio of good actors in a movie each year
+                        </p>
+                        <form method="post" action="/movies/findGoodActorRatio">
                             <input class="welcome-hero-btn how-work-btn" type="submit" value="Enter">
 
                         </form>
@@ -292,33 +307,33 @@
             <div class="col-md-3 col-sm-6">
                 <div class="single-ststistics-box">
                     <div class="statistics-content">
-                        <div class="counter">90 </div> <span>K+</span>
+                        <div class="counter">250 </div> <span>K+</span>
                     </div><!--/.statistics-content-->
-                    <h3>listings</h3>
+                    <h3>ratings</h3>
                 </div><!--/.single-ststistics-box-->
             </div><!--/.col-->
             <div class="col-md-3 col-sm-6">
                 <div class="single-ststistics-box">
                     <div class="statistics-content">
-                        <div class="counter">40</div> <span>k+</span>
+                        <div class="counter">4</div> <span>k+</span>
                     </div><!--/.statistics-content-->
-                    <h3>listing categories</h3>
+                    <h3>movies</h3>
                 </div><!--/.single-ststistics-box-->
             </div><!--/.col-->
             <div class="col-md-3 col-sm-6">
                 <div class="single-ststistics-box">
                     <div class="statistics-content">
-                        <div class="counter">65</div> <span>k+</span>
+                        <div class="counter">10</div> <span>k+</span>
                     </div><!--/.statistics-content-->
-                    <h3>visitors</h3>
+                    <h3>actors&Directors</h3>
                 </div><!--/.single-ststistics-box-->
             </div><!--/.col-->
             <div class="col-md-3 col-sm-6">
                 <div class="single-ststistics-box">
                     <div class="statistics-content">
-                        <div class="counter">50</div> <span>k+</span>
+                        <div class="counter">10</div> <span>k+</span>
                     </div><!--/.statistics-content-->
-                    <h3>happy clients</h3>
+                    <h3>Users</h3>
                 </div><!--/.single-ststistics-box-->
             </div><!--/.col-->
         </div><!--/.statistics-counter-->
@@ -366,17 +381,12 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="index.html">list<span>race</span></a>
+                        <a class="navbar-brand" href="index.html">DB<span>MS</span></a>
                     </div><!--/.navbar-header-->
                 </div>
                 <div class="col-sm-9">
                     <ul class="footer-menu-item">
-                        <li class="scroll"><a href="#works">how it works</a></li>
-                        <li class="scroll"><a href="#explore">explore</a></li>
-                        <li class="scroll"><a href="#reviews">review</a></li>
-                        <li class="scroll"><a href="#blog">blog</a></li>
                         <li class="scroll"><a href="#contact">contact</a></li>
-                        <li class=" scroll"><a href="#contact">my account</a></li>
                     </ul><!--/.nav -->
                 </div>
             </div>
@@ -385,12 +395,11 @@
             <div class="row">
                 <div class="col-sm-5">
                     <p>
-                        &copy;copyright. designed and developed by themesine / More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+                        &copy;copyright. designed and developed by themesine
                     </p><!--/p-->
                 </div>
                 <div class="col-sm-7">
                     <div class="footer-social">
-                        <span><i class="fa fa-phone"> +1  (222) 777 8888</i></span>
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
                         <a href="#"><i class="fa fa-linkedin"></i></a>

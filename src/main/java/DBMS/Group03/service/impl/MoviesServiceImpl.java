@@ -52,4 +52,11 @@ public class MoviesServiceImpl implements MoviesService{
     public List<GenreNum> findGenreNum(){
         return movieDao.findGenreNum();
     }
+
+
+    @Override
+    public List<GoodActorRatio> findGoodActorRatio(){
+        //System.out.println("impl"+year1+"+"+year2);
+        return movieDao.findGoodActorRatio();
+    }
 }

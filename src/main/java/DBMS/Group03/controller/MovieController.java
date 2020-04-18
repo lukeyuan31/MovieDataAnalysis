@@ -148,4 +148,21 @@ public class MovieController {
     }
 
 
+    @RequestMapping("/findGoodActorRatio")
+    public String findGoodActorRatio(){
+        return "goodActorRatio";
+    }
+
+    @RequestMapping("/findGoodActorRatioAjax")
+    @ResponseBody
+    public String findGoodActorRatioAjax(){
+        //System.out.println("controller"+year1+"+"+year2);
+
+        //System.out.println("int" + actualyear1+"+"+actualyear2);
+        List<GoodActorRatio> list=moviesService.findGoodActorRatio();
+        System.out.println(list.toString());
+        return list.toString();
+    }
+
+
 }

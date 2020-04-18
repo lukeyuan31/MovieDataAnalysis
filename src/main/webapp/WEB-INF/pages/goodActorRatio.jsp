@@ -1,15 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: lukeyuan
-  Date: 2020/4/11
-  Time: 5:24 下午
+  Date: 2020/4/18
+  Time: 1:04 上午
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Gender Ratio</title>
-    <!-- meta data -->
+    <title>Good Actors Ratio</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,8 +61,11 @@
     <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
     <![endif]-->
 </head>
+
 <script type="text/javascript" src="../../js/echarts.js" ></script>
 <script type="text/javascript" src="../../js/jquery-1.8.3.js"></script>
+
+
 <body>
 <section class="top-area">
     <div class="header-area">
@@ -102,13 +104,43 @@
 </section>
 
 <section id="home" class="welcome-hero">
-<div class="container">
-    <div id="main" style="width: 800px;height:600px; margin: auto; background: rgba(0,0,0,0.3); background: snow"></div>
-    <div align="center">
-        <button class="welcome-hero-btn" onclick="getData()">Search</button>
+    <div class="container">
+        <div id="main" style="width: 800px;height:600px; margin: auto; background: rgba(0,0,0,0.3); background: snow"></div>
+        <div align="center">
+            Start Year:
+            <!--select id="year1">
+                <option value="1900" selected>1900</option>
+                <option value="1910">1910</option>
+                <option value="1920">1920</option>
+                <option value="1930">1930</option>
+                <option value="1940">1940</option>
+                <option value="1950">1950</option>
+                <option value="1960">1960</option>
+                <option value="1970">1970</option>
+                <option value="1980">1980</option>
+                <option value="1990">1990</option>
+                <option value="2000">2000</option>
+            </select><br>
+            <select id="year2">
+                <option value="1900">1900</option>
+                <option value="1910">1910</option>
+                <option value="1920">1920</option>
+                <option value="1930">1930</option>
+                <option value="1940">1940</option>
+                <option value="1950">1950</option>
+                <option value="1960">1960</option>
+                <option value="1970">1970</option>
+                <option value="1980">1980</option>
+                <option value="1990">1990</option>
+                <option value="2000">2000</option>
+                <option value="2010" selected>2010</option>
+            </select--><br>
+            <br>
+            <button class="welcome-hero-btn" onclick="getData()">Search</button>
+        </div>
     </div>
-</div>
 </section>
+
 
 
 <footer id="footer"  class="footer">
@@ -152,115 +184,112 @@
 
 <script type="text/javascript">
     var myChart=echarts.init(document.getElementById('main'));
-    //var Chartdata=[];
 
-        var year=[];
-        var ratio=[];
+    var year=[];
+    var ratio=[];
+
 
     function getData() {
+        //console.log(year1+'+'+year2);
+
         $.ajax(
             {
                 type: "post",
                 async: true,
-                url: "/movies/findGenderRatioAjax",
-                data: {},
+                url: "/movies/findGoodActorRatioAjax",
+                data:{},
                 dataType: "json",
                 success: function (result) {
-                    console.log(result);
-                    for (var i = 0; i < result.length; i++) {
-                        year.push(result[i].year);
-                        ratio.push(result[i].GenderRatio);
-                    }
+                    if (result){
+                        console.log(result);
+                        for (var i = 0; i < result.length; i++) {
+                            year.push(result[i].year);
+                            ratio.push(result[i].Ratio);
+                        }
 
-                    console.log(year);
-                    console.log(ratio);
+                        console.log(year);
+                        console.log(ratio);
 
-                    option = {
-                        tooltip: {
-                            trigger: 'axis',
-                            position: function (pt) {
-                                return [pt[0], '10%'];
-                            }
-                        },
-                        title: {
-                            left: 'center',
-                            text: 'Gender Ratio',
-                        },
-                        toolbox: {
-                            feature: {
-                                dataZoom: {
-                                    yAxisIndex: 'none'
-                                },
-                                restore: {},
-                                saveAsImage: {}
-                            }
-                        },
-                        xAxis: {
-                            type: 'category',
-                            boundaryGap: false,
-                            data: year
-                        },
-                        yAxis: {
-                            type: 'value',
-                            boundaryGap: [0, '100%']
-                        },
-                        dataZoom: [{
-                            type: 'inside',
-                            start: 0,
-                            end: 10
-                        }, {
-                            start: 0,
-                            end: 10,
-                            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
-                            handleSize: '80%',
-                            handleStyle: {
-                                color: '#fff',
-                                shadowBlur: 3,
-                                shadowColor: 'rgba(0, 0, 0, 0.6)',
-                                shadowOffsetX: 2,
-                                shadowOffsetY: 2
-                            }
-                        }],
-                        series: [
-                            {
-                                name: 'Female/Male',
-                                type: 'line',
-                                smooth: true,
-                                symbol: 'none',
-                                sampling: 'average',
-                                itemStyle: {
-                                    color: 'rgb(255, 70, 131)'
-                                },
-                                areaStyle: {
-                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                        offset: 0,
-                                        color: 'rgb(255, 158, 68)'
-                                    }, {
-                                        offset: 1,
+                        option = {
+                            tooltip: {
+                                trigger: 'axis',
+                                position: function (pt) {
+                                    return [pt[0], '10%'];
+                                }
+                            },
+                            title: {
+                                left: 'center',
+                                text: 'Ratio',
+                            },
+                            toolbox: {
+                                feature: {
+                                    dataZoom: {
+                                        yAxisIndex: 'none'
+                                    },
+                                    restore: {},
+                                    saveAsImage: {}
+                                }
+                            },
+                            xAxis: {
+                                type: 'category',
+                                boundaryGap: false,
+                                data: year
+                            },
+                            yAxis: {
+                                type: 'value',
+                                boundaryGap: [0, '100%']
+                            },
+                            dataZoom: [{
+                                type: 'inside',
+                                start: 0,
+                                end: 10
+                            }, {
+                                start: 0,
+                                end: 10,
+                                handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                                handleSize: '80%',
+                                handleStyle: {
+                                    color: '#fff',
+                                    shadowBlur: 3,
+                                    shadowColor: 'rgba(0, 0, 0, 0.6)',
+                                    shadowOffsetX: 2,
+                                    shadowOffsetY: 2
+                                }
+                            }],
+                            series: [
+                                {
+                                    name: 'A Good Actor',
+                                    type: 'line',
+                                    smooth: true,
+                                    symbol: 'none',
+                                    sampling: 'average',
+                                    itemStyle: {
                                         color: 'rgb(255, 70, 131)'
-                                    }])
-                                },
-                                data: ratio
-                            }
-                        ]
-                    };
-                    myChart.setOption(option);
+                                    },
+                                    areaStyle: {
+                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                            offset: 0,
+                                            color: 'rgb(255, 158, 68)'
+                                        }, {
+                                            offset: 1,
+                                            color: 'rgb(255, 70, 131)'
+                                        }])
+                                    },
+                                    data: ratio
+                                }
+                            ]
+                        };
+                        myChart.setOption(option);
 
+                    }
                 },
                 error: function (errorMsg) {
                     alert("Failed to get data");
                 }
-
             }
         )
+
     }
-
-
-
-
-
-
 </script>
-
 </body>
 </html>

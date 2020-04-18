@@ -43,6 +43,10 @@ body{
 	overflow-x:hidden;
 }
 
+main{
+    margin: 0 auto;
+}
+
 a,a:hover,a:active,a:focus {
 	display:inline-block;
 	text-decoration:none;
@@ -237,13 +241,14 @@ nav.navbar.bootsnav .navbar-toggle i{color: #ff545a;}
 --------------------------------------*/
 .welcome-hero {
     position: relative;
-    background:url(../images/welcome-hero/banner.jpg)no-repeat;
-    background-position:center;
+    background: rgba(0, 0, 0, 0.5) url(../images/welcome-hero/banner.jpg) no-repeat center;
     background-size:cover;
     text-align: center;
     height:800px;
     z-index: 1;
+
 }
+
 .welcome-hero:before{
     position: absolute;
     content: " ";

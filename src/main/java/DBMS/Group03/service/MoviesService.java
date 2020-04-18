@@ -11,5 +11,6 @@ public interface MoviesService {
     public List<RatingnQuality> findRatingnQualityAjax(String name);
     public List<GenderRatio> findGenderRatio();
     public List<GenreNum> findGenreNum();
+    public List<GoodActorRatio> findGoodActorRatio();
 
 }

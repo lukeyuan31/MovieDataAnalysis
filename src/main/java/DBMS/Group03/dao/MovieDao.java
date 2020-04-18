@@ -133,4 +133,27 @@ public interface MovieDao {
             "and a.year = b.year\n" +
             "order by year asc")
     public List<GenreNum> findGenreNum();
+
+
+    @Select("SELECT year, AVG(ratio) as ratio\n" +
+            "FROM Movies,\n" +
+            "(SELECT m1.m_id, m2.count2/m1.count1 as ratio\n" +
+            "FROM \n" +
+            "(SELECT m_id, COUNT(a_id) as count1\n" +
+            "FROM movies_actors GROUP BY m_id) m1,\n" +
+            "\n" +
+            "(SELECT L1.m_id, COUNT(*) as count2\n" +
+            "FROM Movies_actors l1,\n" +
+            "(SELECT * FROM actors\n" +
+            "WHERE a_quality>3) l2\n" +
+            "WHERE l1.a_id=l2.actor_id\n" +
+            "GROUP BY l1.m_id) m2\n" +
+            "\n" +
+            "WHERE m1.m_id=m2.m_id) t1\n" +
+            "WHERE t1.m_id=movies.movie_id\n" +
+            "and movies.year<2020\n" +
+            "and movies.year>1900\n" +
+            "GROUP BY year\n" +
+            "ORDER BY year asc\n")
+    public List<GoodActorRatio> findGoodActorRatio();
 }
