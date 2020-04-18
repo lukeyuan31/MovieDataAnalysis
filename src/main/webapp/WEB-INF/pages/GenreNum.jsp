@@ -128,7 +128,7 @@
             <div class="row">
                 <div class="col-sm-5">
                     <p>
-                        &copy;copyright. designed and developed by themesine
+                        &copy;copyright. designed by themesine. Developed by group 03.
                     </p><!--/p-->
                 </div>
                 <div class="col-sm-7">
