@@ -190,5 +190,13 @@ public class MovieController {
         return list.toString();
     }
 
+    @RequestMapping("/findFemalePercentageAjax")
+    @ResponseBody
+    public String findFemalePercentageAjax(){
+        List<FemalePercentage> list=moviesService.findFemalePercentage();
+        System.out.println(list.toString());
+        return list.toString();
+    }
+
 
 }

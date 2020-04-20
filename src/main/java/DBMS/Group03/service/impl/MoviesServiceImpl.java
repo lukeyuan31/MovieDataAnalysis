@@ -69,4 +69,9 @@ public class MoviesServiceImpl implements MoviesService{
     public List<BelowAvgPercentage> findBelowAvgPercentage() {
         return movieDao.findBelowAvgPercentage();
     }
+
+    @Override
+    public List<FemalePercentage> findFemalePercentage() {
+        return movieDao.findFemalePercentage();
+    }
 }

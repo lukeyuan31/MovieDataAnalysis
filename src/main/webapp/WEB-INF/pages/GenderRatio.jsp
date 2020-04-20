@@ -102,8 +102,9 @@
 </section>
 
 <section id="home" class="welcome-hero">
-<div class="container">
-    <div id="main" style="width: 800px;height:600px; margin: auto; background: rgba(0,0,0,0.3); background: snow"></div>
+<div class="container" style="width: 100%">
+    <div id="main" style="width: 50%;height:600px; margin: auto; background: rgba(0,0,0,0.3); background: snow; float: left"></div>
+    <div id="main2" style="width: 50%;height:600px; margin: auto; background: rgba(0,0,0,0.3); background: snow; float: left"></div>
     <div align="center">
         <button class="welcome-hero-btn" onclick="getData()">Search</button>
     </div>
@@ -156,10 +157,14 @@
 
 <script type="text/javascript">
     var myChart=echarts.init(document.getElementById('main'));
+    var myChart2=echarts.init(document.getElementById('main2'));
     //var Chartdata=[];
 
         var year=[];
         var ratio=[];
+        var type=[];
+        var percentage=[];
+    var dataShadow = [];
 
     function getData() {
         $.ajax(
@@ -170,6 +175,8 @@
                 data: {},
                 dataType: "json",
                 success: function (result) {
+                    year=[];
+                    ratio=[];
                     console.log(result);
                     for (var i = 0; i < result.length; i++) {
                         year.push(result[i].year);
@@ -252,9 +259,123 @@
 
                 },
                 error: function (errorMsg) {
-                    alert("Failed to get data");
+                    alert("Failed to get data1");
                 }
 
+            });
+        $.ajax(
+            {
+                type: "post",
+                async: true,
+                url: "/movies/findFemalePercentageAjax",
+                data:{},
+                dataType: "json",
+                success: function (result) {
+                    type=[];
+                    percentage=[];
+                    console.log(result);
+                    for (var i = 0; i < result.length; i++) {
+                        type.push(result[i].genre);
+                        percentage.push(result[i].FemalePercentage);
+                    }
+
+
+                    for (var j = 0; j < type.length; j++) {
+                        dataShadow.push(20);
+                    }
+
+                    option2={
+                        title: {
+                            text: 'Female leading movies',
+                            subtext: 'Feature Sample: Gradient Color, Shadow, Click Zoom'
+                        },
+                        xAxis: {
+                            data: type,
+                            axisLabel: {
+                                inside: true,
+                                textStyle: {
+                                    color: '#000'
+                                }
+                            },
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                show: false
+                            },
+                            z: 10
+                        },
+                        yAxis: {
+                            axisLine: {
+                                show: false
+                            },
+                            axisTick: {
+                                show: false
+                            },
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#999'
+                                }
+                            }
+                        },
+                        dataZoom: [
+                            {
+                                type: 'inside'
+                            }
+                        ],
+                        series: [
+                            { // For shadow
+                                type: 'bar',
+                                itemStyle: {
+                                    color: 'rgba(0,0,0,0.05)'
+                                },
+                                barGap: '-100%',
+                                barCategoryGap: '40%',
+                                data: dataShadow,
+                                animation: false
+                            },
+                            {
+                                type: 'bar',
+                                itemStyle: {
+                                    color: new echarts.graphic.LinearGradient(
+                                        0, 0, 0, 1,
+                                        [
+                                            {offset: 0, color: '#83bff6'},
+                                            {offset: 0.5, color: '#188df0'},
+                                            {offset: 1, color: '#188df0'}
+                                        ]
+                                    )
+                                },
+                                emphasis: {
+                                    itemStyle: {
+                                        color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                {offset: 0, color: '#2378f7'},
+                                                {offset: 0.7, color: '#2378f7'},
+                                                {offset: 1, color: '#83bff6'}
+                                            ]
+                                        )
+                                    }
+                                },
+                                data: percentage
+                            }
+                        ]
+                    };
+                    var zoomSize = 6;
+                    myChart.on('click', function (params) {
+                        console.log(type[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+                        myChart.dispatchAction({
+                            type: 'dataZoom',
+                            startValue: type[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                            endValue: type[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+                        });
+                    });
+                    myChart2.setOption(option2);
+                },
+                error: function (errorMsg) {
+                    alert("Failed to get data");
+                }
             }
         )
     }

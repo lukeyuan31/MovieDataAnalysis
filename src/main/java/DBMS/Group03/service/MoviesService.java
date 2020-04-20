@@ -15,4 +15,6 @@ public interface MoviesService {
     public List<QualityDifference> findQualityDifference();
     public List<BelowAvgPercentage> findBelowAvgPercentage();
 
+    public List<FemalePercentage> findFemalePercentage();
+
 }

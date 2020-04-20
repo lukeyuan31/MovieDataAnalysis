@@ -199,5 +199,34 @@ public interface MovieDao {
             "order by year")
     public List<BelowAvgPercentage> findBelowAvgPercentage();
 
+    //以女性角色占主导的电影在各类型影片中的比例
+//the percentage of women-leading movie in all kinds of movie genres
+    //柱状图
+    @Select("select md.genre as genre, (cid/genre_count)*100 as percentage\n" +
+            "from\n" +
+            "(select genre, count(id) as cid\n" +
+            "from\n" +
+            "(select distinct(f.m_id) as id from\n" +
+            "(select m_id, count(ma.a_id) as fnum\n" +
+            "from movies_actors ma, actors a\n" +
+            "where a.actor_id = ma.a_id\n" +
+            "and a.a_gender = 'F'\n" +
+            "group by m_id) F,\n" +
+            "(select m_id, count(ma.a_id) mnum\n" +
+            "from movies_actors ma, actors a\n" +
+            "where a.actor_id = ma.a_id\n" +
+            "and a.a_gender = 'M'\n" +
+            "group by m_id) M\n" +
+            "where m.m_id = f.m_id\n" +
+            "and f.fnum>=m.mnum) mov,\n" +
+            "movies_dirs\n" +
+            "where mov.id = movies_dirs.m_id\n" +
+            "group by genre) female,\n" +
+            "(select genre,count(*) as genre_count\n" +
+            "from movies_dirs\n" +
+            "group by genre) md\n" +
+            "where md.genre = female.genre")
+    public List<FemalePercentage> findFemalePercentage();
+
 
 }
