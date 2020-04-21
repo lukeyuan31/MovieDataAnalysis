@@ -222,6 +222,7 @@
                             title: {
                                 left: 'center',
                                 text: 'Ratio',
+                                subtext: 'The ratio of movies with good actors(Rating>=4)'
                             },
                             toolbox: {
                                 feature: {

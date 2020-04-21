@@ -188,7 +188,8 @@
 
                     option = {
                         title: {
-                            text: 'Quality Difference'
+                            text: 'Quality Difference',
+                            subtext:'The difference between the average rating of the movies and the directors'
                         },
                         tooltip: {
                             trigger: 'axis'

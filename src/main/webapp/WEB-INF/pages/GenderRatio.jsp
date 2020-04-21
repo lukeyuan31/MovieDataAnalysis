@@ -287,7 +287,7 @@
                     option2={
                         title: {
                             text: 'Female leading movies',
-                            subtext: 'Feature Sample: Gradient Color, Shadow, Click Zoom'
+                            subtext: 'For each type of movies, the percentage of women leading ones'
                         },
                         xAxis: {
                             data: type,
