@@ -1,5 +1,7 @@
 # IMDb Data Analysis
 
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+
 **UFID 2144-2855**  
 *Keyuan Lu*  
 keyuan.lu@ufl.edu
